@@ -4,36 +4,39 @@
 //TODO 需要补习redux
 import axios from 'axios'
 // actionType
-const GET_LIST='INDEX/GET_LIST'
+const GET_LIST='INDEX/GET_LISTTWO'
 
 //actionCreator
-const changList=list=>({
+const changListTwo=listTWO=>({
     type:GET_LIST,
-    list
+    listTWO
 })
 
-export const getHomeList=server=>{
+export const getHomeTwoList=server=>{
+    console.log("wolailelllelle")
     return (dispatch,getState,axiosInstance)=>{
-        return axios.get('http://localhost:9099/api/home/list')
+        return axios.get('http://localhost:9099/api/homeTwo/list')
         .then(res=>{
-            const{list}=res.data
-            console.log(list);
+            const {listTWO}=res.data
             
-            dispatch(changList(list))
+            console.log(listTWO,"listTWO11");
+            
+            dispatch(changListTwo(listTWO))
         })
     }
 }
 
 const defautState={
-    list:[]
+    listTWO:{}
 }
 
 export default (state=defautState,action)=>{
     switch (action.type) {
         case GET_LIST:
+            console.log(action.listTWO,"action")
             const newState={
                 ...state,
-                list:action.list
+                listTWO:action.listTWO
             }
             return newState
             break;

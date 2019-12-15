@@ -12,8 +12,13 @@ function Home(params) {
     const ulStyle={
         listStyle:'none'
     }
+
     useEffect(()=>{
-        params.getHomeList()
+        // 首页数据的调用
+        if(!params.list.length){
+            params.getHomeList()
+        }
+       
     },[])
     return <div>
                 <h1>Hello {params.title}!!</h1>
@@ -26,6 +31,10 @@ function Home(params) {
                 })}
             </ul>
     </div>
+}
+
+Home.loadData=(store)=>{
+    return store.dispatch(getHomeList())
 }
 
 export default connect(
