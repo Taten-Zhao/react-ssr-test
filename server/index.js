@@ -61,6 +61,8 @@ app.get('*',(req,res)=>{
             </html>
             `
         )
+    }).catch(()=>{
+        res.send("接口报错了！！")
     })
 
   
